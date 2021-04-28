@@ -1,0 +1,76 @@
+﻿@model IEnumerable<dari_frontend.Models.PropertyModel>
+
+@{
+    ViewBag.Title = "Index1";
+    Layout = "~/Views/Shared/_Layout_BackOffice.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create1")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_for_sale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_for_rental)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rentalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.postDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.is_for_sale)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.is_for_rental)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.salePrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.rentalPrice)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit1", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details1", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete1", new { id = item.id })
+    </td>
+</tr>
+}
+
+</table>

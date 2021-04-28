@@ -1,0 +1,52 @@
+﻿@model Dari_master_front.Models.AuctionModel
+
+<div>
+    <h4>AuctionModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.auction_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auction_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startingprice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startingprice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.onGoing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.onGoing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index1")
+</p>

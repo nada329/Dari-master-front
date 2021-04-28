@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ClientChat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/Scripts/stomp.js/bundles/stomp.umd.min.js")
+
+
+
+<script>
+const { StompJs } = require("../../Scripts/stompjs/bundles/stomp.umd");
+
+    const client = new StompJs.Client({
+        brokerURL: 'ws://user1:password@localhost:8081/messaging',
+        // connectHeaders: { login: 'user', passcode: 'password', },
+    });
+
+    client.onConnect = function (frame) {
+        client.subscribe('/topic/credits/@ViewBag.SessionId', function (message) {
+            console.log(message.body);
+        });
+    };
+
+    client.activate();
+
+    client.publish({ destination: '/app/credits/@ViewBag.SessionId', body: 'Hello world' });
+
+    client.debug = function (str) { console.log(str); };
+</script>

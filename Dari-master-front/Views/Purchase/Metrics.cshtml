@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Metrics";
+    Layout = "~/Views/Shared/_Layout_BackOffice.cshtml";
+}
+
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="ir1" id="ir1" value="ir1" onclick="showRegionsByDemandData();">
+    <label class="form-check-label" for="ir1">Show Regions By Demand</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="ir2" id="ir2" value="ir2" onclick="showRegionsByAvgPriceData();">
+    <label class="form-check-label" for="ir2">Show Regions By Average Cost</label>
+</div>
+
+<div style="height: 400px">
+    <div id="map" style="height: 100%"></div>
+</div>
+
+<script>
+    let map;
+    let heatmap;
+    let regionsByDemandData = [
+        new google.maps.LatLng(-34.316, 9.257),
+        new google.maps.LatLng(37.785, -122.435)
+    ];
+    let regionsByAvgPriceData = [
+        { location: new google.maps.LatLng(37.782, -122.443), weight: 2 },
+        { location: new google.maps.LatLng(37.782, -122.441), weight: 3 }
+    ];
+
+    function showRegionsByDemandData() {
+        heatmap.data = regionsByDemandData;
+    }
+
+    function showRegionsByAvgPriceData() {
+        heatmap.data = regionsByAvgPriceData;
+    }
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.316, lng: 9.257 },
+            zoom: 7,
+            mapTypeId: 'terrain',
+            disableDefaultUI: true,
+            minZoom: 7,
+            maxZoom: 14,
+            restriction: {
+                latLngBounds: {
+                    north: 37.3485,
+                    south: 30.228,
+                    east: 11.6,
+                    west: 7.52,
+                },
+            },
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+            data: regionsByDemandData
+        });
+        heatmap.setMap(map);
+    }
+</script>
+
+@section scripts {
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxiPHfIX8numkbXb0G5xsTIl5Eagg-Dss&libraries=visualization&callback=initMap&v=weekly"></script>
+}

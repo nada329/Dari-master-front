@@ -1,0 +1,169 @@
+﻿@model IEnumerable<dari_frontend.Models.PropertyModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<!--
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_for_sale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_for_rental)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rentalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.postDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.is_for_sale)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.is_for_rental)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.salePrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.rentalPrice)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+    </td>
+</tr>
+}
+
+</table>
+        -->
+<section class="feature-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Listing From Our Agents</span>
+                    <h2>Featured Properties</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="feature-carousel owl-carousel">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-12">
+                        <div class="feature-item">
+                            <div class="fi-pic set-bg" data-setbg="../Content/maison.jpg">
+                                @if (item.is_for_rental == true)
+                                {
+                                    <div class="pic-tag">
+
+                                        <div class="f-text">feauture</div>
+                                        <div class="s-text">For Rent</div>
+
+
+                                    </div>
+                                }
+                                @if (item.is_for_sale == true)
+                                {
+                                    <div class="pic-tag">
+
+                                        <div class="f-text">feauture</div>
+                                        <div class="s-text">For Rent</div>
+
+
+                                    </div>
+                                }
+                                <div class="feature-author">
+                                    <div class="fa-pic">
+                                        <img src="~/Content/maison.jpg" alt="">
+                                        @Html.ActionLink("Details", "Details", new { id = item.id }, new {@class = "property-sub",@style = "display: inline-block; background: #2CBDB8; font-size: 14px; color: #ffffff; padding: 20px 30px;"})
+                                    </div>
+                                    <div class="fa-text">
+                                        <span> posted by <Strong>@Html.DisplayFor(modelItem => item.owner.FirstName) @Html.DisplayFor(modelItem => item.owner.LastName)</Strong></span> in <i class="fa fa-clock">@Html.DisplayFor(modelItem => item.postDate)</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fi-text">
+                                <div class="inside-text">
+                                    <h4>@Html.DisplayFor(modelItem => item.description)</h4>
+
+                                    @if (item.rentalPrice != 0)
+                                    {
+                                        <h5 class="price">@Html.DisplayFor(modelItem => item.rentalPrice)<span>/ permonth</span></h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 style="color:red"><span>Not for rent</span></h5>
+                                    }
+                                    @if (item.salePrice != 0) 
+                                    {
+                                        <h5 class="price">@Html.DisplayFor(modelItem => item.salePrice)<span> for Sale</span></h5>
+                                    }
+                                    else
+                                    {
+                                                <h5 style="color:red"><span>Not for Sale</span></h5>
+                                    }
+
+                                </div>
+                                <ul class="room-features">
+                                    <li>
+                                        <i class="fa fa-arrows"></i>
+                                        <p>@Html.DisplayFor(modelItem => item.area) <strong>sqft</strong></p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-bed"></i>
+                                        <p>@Html.DisplayFor(modelItem => item.rooms)</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="        width: 50%;
+        color: gray;
+        border-radius: 2px;
+        border: 3px solid
+">
+                    }
+
+            </div>
+        </div>
+    </div>
+</section>
